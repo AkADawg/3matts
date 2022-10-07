@@ -30,6 +30,7 @@ export default function Home() {
         <h1 className={styles.title}>NextJS Playground</h1>
         <br />
         <Link href="/"> Click to see all users</Link>
+        <Link href="/remove"> Click to remove users</Link>
         <p>current defect: adding a name fails the request</p>
         <h2>Test POST request</h2>
         <h2>Add a user</h2>

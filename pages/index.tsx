@@ -27,6 +27,7 @@ export default function Home() {
         <h1 className={styles.title}>NextJS Playground</h1>
         <br />
         <Link href="/new"> Click to add a user</Link>
+        <Link href="/remove"> Click to remove a user</Link>
         <h2>Test GET request</h2>
         <h2>All users</h2>
         <table style={{ borderCollapse: "separate", borderSpacing: "5em" }}>

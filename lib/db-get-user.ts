@@ -8,10 +8,9 @@ const getUserFromDb = async () => {
 
   try {
     const users = await prisma.user.findMany();
-    console.log(users);
-    console.log(`got users ${users[0]}`);
+    console.log(`got users ${users}`);
     await prisma.$disconnect();
-    return users[0];
+    return users;
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();

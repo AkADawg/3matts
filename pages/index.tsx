@@ -2,9 +2,10 @@ import Head from "next/head";
 import axios from "axios";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
-  const [user, setUser] = useState({});
+  const [users, setUser] = useState([]);
   useEffect(() => {
     const getUser = async () => {
       // Get the token from client-side storage and pass in request
@@ -14,7 +15,6 @@ export default function Home() {
     };
     getUser();
   }, []);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -25,15 +25,27 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>NextJS Playground</h1>
+        <br />
+        <Link href="/new"> Click to add a user</Link>
         <h2>Test GET request</h2>
-        <p>
-          Current user:
-          {user?.name}
-        </p>
-        <p>
-          Current email:
-          {user.email}
-        </p>
+        <h2>All users</h2>
+        <table style={{ borderCollapse: "separate", borderSpacing: "5em" }}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users &&
+              users.map((user) => (
+                <tr key={user.name}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </main>
     </div>
   );

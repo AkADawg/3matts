@@ -9,7 +9,6 @@ type AddUserParams = {
 
 const addUserToDb = async ({ name, email }: AddUserParams) => {
   try {
-    console.log(name, email);
     const user = await prisma.user.create({
       data: {
         name,

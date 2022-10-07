@@ -1,5 +1,6 @@
 import addUserToDb from "../../lib/db-create-user";
-import getUserFromDb from "../../lib/db-get-user";
+import deleteUserFromDb from "../../lib/db-delete-user";
+import getUsersFromDb from "../../lib/db-get-users";
 
 /**
  * @swagger
@@ -22,13 +23,12 @@ import getUserFromDb from "../../lib/db-get-user";
 
 const routeHandler = async (req, res) => {
   if (req.method === "GET") {
-    // get a user
-    const user = await getUserFromDb();
+    // get users
+    const users = await getUsersFromDb();
     console.log("user received from DB");
-    res.send(user);
+    res.send(users);
   }
   if (req.method === "POST") {
-    console.log(req.body);
     const { name, email } = req.body;
     // Add a user
     await addUserToDb({ name, email });
@@ -36,6 +36,16 @@ const routeHandler = async (req, res) => {
     res.status(200).json({
       name,
       email,
+    });
+  }
+
+  if (req.method === "DELETE") {
+    const { id } = req.body;
+    // Delete a user
+    await deleteUserFromDb({ id });
+    // Return the id
+    res.status(200).json({
+      id,
     });
   }
 };

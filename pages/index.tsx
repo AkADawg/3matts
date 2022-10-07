@@ -32,6 +32,7 @@ export default function Home() {
         <table style={{ borderCollapse: "separate", borderSpacing: "5em" }}>
           <thead>
             <tr>
+              <th>Id</th>
               <th>Name</th>
               <th>Email</th>
             </tr>
@@ -40,6 +41,7 @@ export default function Home() {
             {users &&
               users.map((user) => (
                 <tr key={user.name}>
+                  <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                 </tr>
